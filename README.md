@@ -1,4 +1,4 @@
-Role Name
+Role InsonusK.AmneziaWG
 =========
 
 Install [AmneziaWG](https://amnezia.org/) to Ubuntu
