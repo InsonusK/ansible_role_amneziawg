@@ -1,0 +1,5 @@
+{
+	"name": "DeployTools",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"dockerFile": "Dockerfile"
+}
