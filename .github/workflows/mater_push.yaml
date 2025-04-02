@@ -1,0 +1,29 @@
+name: Publish to Ansible Galaxy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  publish:
+    name: Publish Role to Ansible Galaxy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Ansible
+        run: |
+          sudo apt update
+          sudo apt install -y ansible
+
+      - name: Install Ansible Galaxy CLI
+        run: ansible-galaxy --version
+
+      - name: Publish to Ansible Galaxy
+        env:
+          ANSIBLE_GALAXY_API_KEY: ${{ secrets.ANSIBLE_API_TOKEN }}
+        run: |
+          ansible-galaxy role import --api-key $ANSIBLE_GALAXY_API_KEY --github-token ${{ secrets.GITHUB_TOKEN }} --branch master --role-name $(basename $(github.repository))

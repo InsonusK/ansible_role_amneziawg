@@ -1,0 +1,56 @@
+- name: Check if awg-quick service is running
+  systemd:
+    name: awg-quick@awg-client.service
+    state: started
+  register: service_status
+  ignore_errors: true
+
+- name: config Amnezia WG
+  when: service_status.status is not defined or service_status.status["ActiveState"] != "active"
+  block:
+  - name: Decrypt ansible-vault and copy config
+    copy:
+      src: {{ awg_client_path }}
+      dest: "/etc/amnezia/amneziawg/awg-client.conf"
+      owner: root
+      group: root
+      mode: '0600'
+
+  - name: Create systemd unit for awg-quick
+    copy:
+      dest: "/etc/systemd/system/awg-quick@.service"
+      content: |
+        [Unit]
+        Description=AWG-Quick for %i
+        After=network.target
+        Wants=network.target
+
+        [Service]
+        Type=oneshot
+        ExecStart=/usr/bin/awg-quick up %i
+        ExecStop=/usr/bin/awg-quick down %i
+        RemainAfterExit=true
+
+        [Install]
+        WantedBy=multi-user.target
+      owner: root
+      group: root
+      mode: '0644'
+
+  - name: Restart systemd
+    systemd:
+      daemon_reload: yes
+
+  - name: Enable awg-quick service
+    systemd:
+      name: awg-quick@awg-client.service
+      enabled: yes
+      state: started
+
+  - name: Assert awg-quick service is running
+    systemd:
+      name: awg-quick@awg-client.service
+      state: started
+    register: service_status
+    failed_when: service_status.status["ActiveState"] != "active"
+    changed_when: false

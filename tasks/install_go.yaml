@@ -1,0 +1,32 @@
+- name: Check if Go is installed
+  command: /usr/local/go/bin/go version
+  register: go_check
+  ignore_errors: true
+  changed_when: false
+
+- name: Install Go
+  when: go_check.rc != 0
+  block:
+  - name: Download Go 1.21.0
+    get_url:
+      url: https://go.dev/dl/go1.21.0.linux-amd64.tar.gz
+      dest: /tmp/go1.21.0.linux-amd64.tar.gz
+
+  - name: Install Go
+    ansible.builtin.unarchive:
+      src: /tmp/go1.21.0.linux-amd64.tar.gz
+      dest: /usr/local
+      remote_src: yes
+
+  - name: Add Go to PATH
+    lineinfile:
+      path: ~/.bashrc
+      line: 'export PATH=$PATH:/usr/local/go/bin'
+      state: present
+      create: true
+  
+  - name: Remove Go installation archive
+    file:
+      path: /tmp/go1.21.0.linux-amd64.tar.gz
+      state: absent
+  

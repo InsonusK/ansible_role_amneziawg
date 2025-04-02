@@ -1,0 +1,24 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for amneziawg
+- name: Apt upgrade
+  apt:
+    upgrade: yes
+- name: Install packages
+  apt:
+    name:
+      - make
+      - build-essential
+      - git
+      - iptables-persistent
+    state: present
+
+- name: Install GO
+  include_tasks: install_go.yaml
+
+- name: Install AWG
+  include_tasks: install_amneziawg.yaml
+
+- name: Config AWG
+  include_tasks: config_amneziawg.yaml
+
