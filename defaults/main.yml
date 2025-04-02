@@ -1,4 +1,2 @@
-#SPDX-License-Identifier: MIT-0
 ---
-# defaults file for amneziawg
-awg_client_path: None
+awg_client_path: None # Path to awg client config file

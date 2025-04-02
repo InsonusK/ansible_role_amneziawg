@@ -1,9 +1,10 @@
+---
 - name: Check if Go is installed
   command: awg-quick --help
   register: awg_check
   ignore_errors: true
   changed_when: false
-  
+
 - name: Install Amnezia WG
   when: awg_check.rc != 0
   block:
@@ -11,8 +12,8 @@
     git:
       repo: https://github.com/amnezia-vpn/amneziawg-go
       dest: ~/awg/amneziawg-go
-      clone: yes
-      update: yes
+      clone: true
+      update: true
 
   - name: Install amneziawg-go
     command: sudo env PATH=/usr/local/go/bin:{{ ansible_env.PATH }} make install
@@ -23,11 +24,10 @@
     git:
       repo: https://github.com/amnezia-vpn/amneziawg-tools.git
       dest: ~/awg/amneziawg-tools
-      clone: yes
-      update: yes
+      clone: true
+      update: true
 
   - name: Install amneziawg-tools
     command: sudo env PATH=/usr/local/go/bin:{{ ansible_env.PATH }} make install
     args:
       chdir: ~/awg/amneziawg-tools/src
-    

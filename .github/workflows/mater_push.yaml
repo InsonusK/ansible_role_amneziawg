@@ -9,15 +9,10 @@ jobs:
   publish:
     name: Publish Role to Ansible Galaxy
     runs-on: ubuntu-latest
-
+    container: alpine/ansible
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Install Ansible
-        run: |
-          sudo apt update
-          sudo apt install -y ansible
 
       - name: Install Ansible Galaxy CLI
         run: ansible-galaxy --version
@@ -26,4 +21,5 @@ jobs:
         env:
           ANSIBLE_GALAXY_API_KEY: ${{ secrets.ANSIBLE_API_TOKEN }}
         run: |
-          ansible-galaxy role import --api-key $ANSIBLE_GALAXY_API_KEY --branch master --role-name AmneziaWG insonusk ansible_role_microk8s
+          ansible-galaxy role import --token $ANSIBLE_GALAXY_API_KEY --branch master --role-name AmneziaWG InsonusK ansible_role_amneziawg
+          
