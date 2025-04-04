@@ -1,6 +1,7 @@
 ---
 - name: Apt upgrade
   apt:
+    update_cache: yes
     upgrade: true
 - name: Install packages
   apt:
