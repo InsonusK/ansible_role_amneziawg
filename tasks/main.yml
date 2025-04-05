@@ -1,16 +1,6 @@
 ---
-- name: Apt upgrade
-  apt:
-    update_cache: yes
-    upgrade: true
-- name: Install packages
-  apt:
-    name:
-      - make
-      - build-essential
-      - git
-      - iptables-persistent
-    state: present
+- name: Apt install
+  include_tasks: apt_install.yaml
 - name: Install GO
   include_tasks: install_go.yaml
 - name: Install AWG

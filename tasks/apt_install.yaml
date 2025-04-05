@@ -1,0 +1,19 @@
+---
+- name: Apt install
+  block:
+  - name: Install apt-utils to fix debconf issues
+    apt:
+      name: apt-utils
+      state: present
+  - name: Apt upgrade
+    apt:
+      update_cache: yes
+      upgrade: true
+  - name: Install packages
+    apt:
+      name:
+        - make
+        - build-essential
+        - git
+        - iptables-persistent
+      state: present
