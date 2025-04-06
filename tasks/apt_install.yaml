@@ -1,14 +1,10 @@
 ---
 - name: Apt install
   block:
-  - name: Install apt-utils to fix debconf issues
-    apt:
-      name: apt-utils
-      state: present
+  - name: Install apt-utils
+    command: apt update
   - name: Apt upgrade
-    apt:
-      update_cache: yes
-      upgrade: true
+    command: apt upgrade -y
   - name: Install packages
     apt:
       name:

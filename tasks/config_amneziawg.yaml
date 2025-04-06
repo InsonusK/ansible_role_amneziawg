@@ -7,9 +7,10 @@
   ignore_errors: true
 
 - name: config Amnezia WG
-  when:
-    - service_status.status is not defined
-    - service_status.status["ActiveState"] != "active"
+  when: >
+    service_status is not defined or 
+    service_status.status is not defined or
+    service_status.status["ActiveState"] != "active"
   block:
     - name: Decrypt ansible-vault and copy config
       copy:
