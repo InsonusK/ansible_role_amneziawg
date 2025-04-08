@@ -1,9 +1,6 @@
 name: Publish to Ansible Galaxy
 
 on:
-  push:
-    branches:
-      - master
   release:
     types: [published]
 
