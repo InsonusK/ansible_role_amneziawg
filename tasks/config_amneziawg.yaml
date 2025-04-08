@@ -35,7 +35,7 @@
     - name: Enable awg-quick service
       systemd:
         name: awg-quick@awg-client.service
-        enabled: ture
+        enabled: true
         state: started
 
     - name: Assert awg-quick service is running
