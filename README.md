@@ -13,6 +13,7 @@ Role Variables
 --------------
 
 - awg_client_path - path to awg client config file
+- go_package - package of GO.
 
 Dependencies
 ------------
@@ -37,3 +38,9 @@ Author Information
 ------------------
 
 [InsonusK](https://github.com/InsonusK)
+
+FAQ
+------------------
+
+Common errors on step:
+- [Install amneziawg-go](./docs/errors/Install%20amneziawg-go.md)

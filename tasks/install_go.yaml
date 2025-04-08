@@ -8,14 +8,14 @@
 - name: Install Go
   when: go_check.rc != 0
   block:
-  - name: Download Go 1.21.0
+  - name: Download Go {{ go_package }}
     get_url:
-      url: https://go.dev/dl/go1.21.0.linux-amd64.tar.gz
-      dest: /tmp/go1.21.0.linux-amd64.tar.gz
+      url: "https://go.dev/dl/{{ go_package }}"
+      dest: "/tmp/{{ go_package }}"
 
   - name: Install Go
     ansible.builtin.unarchive:
-      src: /tmp/go1.21.0.linux-amd64.tar.gz
+      src: "/tmp/{{ go_package }}"
       dest: /usr/local
       remote_src: true
 
@@ -28,5 +28,5 @@
 
   - name: Remove Go installation archive
     file:
-      path: /tmp/go1.21.0.linux-amd64.tar.gz
+      path: "/tmp/{{ go_package }}"
       state: absent
