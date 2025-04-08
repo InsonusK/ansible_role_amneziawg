@@ -3,6 +3,7 @@ Role InsonusK.AmneziaWG
 
 Install [AmneziaWG](https://amnezia.org/) to Ubuntu
 
+[Ansible galaxy](https://galaxy.ansible.com/ui/standalone/roles/InsonusK/AmneziaWG/install/)
 
 Requirements
 ------------
@@ -22,11 +23,11 @@ None
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+- hosts: server
+  roles:
+  - role: InsonusK.AmneziaWG
+    vars:
+      awg_client_path: "{{ awg_client_config_path }}"
 
 License
 -------
