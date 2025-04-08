@@ -22,7 +22,7 @@
 
     - name: Create systemd unit for awg-quick
       copy:
-        src: awg-quick@.service
+        src: awg-quick.service
         dest: "/etc/systemd/system/awg-quick@.service"
         owner: root
         group: root
