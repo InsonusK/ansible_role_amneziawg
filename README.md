@@ -2,6 +2,7 @@ Role InsonusK.AmneziaWG
 =========
 
 Install [AmneziaWG](https://amnezia.org/) to Ubuntu
+
 [Ansible galaxy](https://galaxy.ansible.com/ui/standalone/roles/InsonusK/AmneziaWG/install/)
 
 Requirements
