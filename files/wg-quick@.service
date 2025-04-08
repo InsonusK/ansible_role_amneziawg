@@ -1,0 +1,13 @@
+[Unit]
+Description=AWG-Quick for %i
+After=network.target
+Wants=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/awg-quick up %i
+ExecStop=/usr/bin/awg-quick down %i
+RemainAfterExit=true
+
+[Install]
+WantedBy=multi-user.target

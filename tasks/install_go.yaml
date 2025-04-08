@@ -21,7 +21,7 @@
 
   - name: Add Go to PATH
     lineinfile:
-      path: ~/.bashrc
+      path: "{{ ansible_env.HOME }}/.bashrc"
       line: 'export PATH=$PATH:/usr/local/go/bin'
       state: present
       create: true

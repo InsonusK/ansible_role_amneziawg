@@ -11,23 +11,23 @@
   - name: Clone amneziawg-go repository
     git:
       repo: https://github.com/amnezia-vpn/amneziawg-go
-      dest: ~/awg/amneziawg-go
+      dest: "{{ ansible_env.HOME }}/awg/amneziawg-go"
       clone: true
       update: true
 
   - name: Install amneziawg-go
     command: sudo env PATH=/usr/local/go/bin:{{ ansible_env.PATH }} make install
     args:
-      chdir: ~/awg/amneziawg-go
+      chdir: "{{ ansible_env.HOME }}/awg/amneziawg-go"
 
   - name: Clone amneziawg-tools repository
     git:
       repo: https://github.com/amnezia-vpn/amneziawg-tools.git
-      dest: ~/awg/amneziawg-tools
+      dest: "{{ ansible_env.HOME }}/awg/amneziawg-tools"
       clone: true
       update: true
 
   - name: Install amneziawg-tools
     command: sudo env PATH=/usr/local/go/bin:{{ ansible_env.PATH }} make install
     args:
-      chdir: ~/awg/amneziawg-tools/src
+      chdir: "{{ ansible_env.HOME }}/awg/amneziawg-tools/src"
