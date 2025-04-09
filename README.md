@@ -24,11 +24,13 @@ None
 Example Playbook
 ----------------
 
+```yaml
 - hosts: server
   roles:
   - role: InsonusK.AmneziaWG
     vars:
       awg_client_path: "{{ awg_client_config_path }}"
+```
 
 License
 -------
