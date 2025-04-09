@@ -8,7 +8,7 @@ Install [AmneziaWG](https://amnezia.org/) to Ubuntu
 Requirements
 ------------
 
-Ubuntu 24.10+
+Ubuntu 24.02+
 
 Role Variables
 --------------
