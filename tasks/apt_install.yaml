@@ -1,10 +1,11 @@
 ---
 - name: Apt install
   block:
-  - name: Install apt-utils
-    command: apt update
-  - name: Apt upgrade
-    command: apt upgrade -y
+  - name: Update all packages on the system
+    become: true
+    apt:
+      upgrade: yes
+      update_cache: yes
   - name: Install packages
     apt:
       name:

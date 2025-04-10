@@ -17,8 +17,8 @@ jobs:
         run: ansible-galaxy --version
 
       - name: Publish to Ansible Galaxy
-        env:
-          ANSIBLE_GALAXY_API_KEY: ${{ secrets.ANSIBLE_API_TOKEN }}
+        env: 
+          ANSIBLE_GALAXY_API_KEY: ${{ secrets.ANSIBLE_API_TOKEN }} #define in https://github.com/InsonusK/ansible_role_amneziawg/settings/secrets/actions
         run: |
           ansible-galaxy role import --token $ANSIBLE_GALAXY_API_KEY --branch master --role-name AmneziaWG InsonusK ansible_role_amneziawg
           
