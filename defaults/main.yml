@@ -1,3 +1,4 @@
 ---
-awg_client_path: None # Path to awg client config file
+#awg_client_config_path: None # Path to awg client config file
 go_package: "go1.24.2.linux-amd64.tar.gz" # version of GO
+use_alt_flow: false # whether to use the main flow or the alternative flow

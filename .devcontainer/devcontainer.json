@@ -1,5 +1,12 @@
 {
 	"name": "DeployTools",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"dockerFile": "Dockerfile"
+	"dockerFile": "Dockerfile",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"moonshot-ai.kimi-code"
+			]
+		}
+	}
 }

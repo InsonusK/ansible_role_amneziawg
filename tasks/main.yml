@@ -1,9 +1,24 @@
 ---
-- name: Apt install
-  include_tasks: apt_install.yaml
-- name: Install GO
-  include_tasks: install_go.yaml
-- name: Install AWG
-  include_tasks: install_amneziawg.yaml
-- name: Config AWG
+- name: Validate prerequisites
+  include_tasks: validation.yaml
+  
+- name: Use main workdflow
+  when: use_alt_flow == false
+  block:
+    - name: Apt install
+      include_tasks: main_install/apt_install.yaml
+
+- name: Use alternative workflow
+  when: use_alt_flow == true
+  block:
+    - name: Apt install
+      include_tasks: alt_install/apt_install.yaml
+    - name: Install GO
+      include_tasks: alt_install/install_go.yaml
+    - name: Install AWG
+      include_tasks: alt_install/install_amneziawg.yaml
+    - name: Config AWG
+      include_tasks: alt_install/setup_awg_quick.yaml
+
+- name: Config AmneziaWG
   include_tasks: config_amneziawg.yaml
