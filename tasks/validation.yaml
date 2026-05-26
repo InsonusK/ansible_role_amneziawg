@@ -8,3 +8,15 @@
     fail_msg: "awg_client_config_path must be defined"
   delegate_to: localhost
   run_once: true
+
+- name: Check config file exists on control node
+  delegate_to: localhost
+  stat:
+    path: "{{ awg_client_config_path }}"
+  register: config_file_stat
+  become: false
+  
+- name: Fail if config file does not exist
+  fail:
+    msg: "Config file does not exist: {{ awg_client_config_path }}"
+  when: not config_file_stat.stat.exists
