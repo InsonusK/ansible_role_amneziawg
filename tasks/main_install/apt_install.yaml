@@ -1,0 +1,31 @@
+---
+- name: Update all packages on the system
+  become: true
+  apt:
+    upgrade: yes
+    update_cache: yes
+
+- name: Install prerequisites for AmneziaWG
+  ansible.builtin.apt:
+    name:
+      - software-properties-common
+      - python3-launchpadlib
+      - gnupg2
+      - "linux-headers-{{ ansible_kernel }}"
+    state: present
+    update_cache: yes
+  become: yes
+
+- name: Add AmneziaWG PPA repository
+  ansible.builtin.apt_repository:
+    repo: ppa:amnezia/ppa
+    state: present
+    update_cache: yes
+  become: yes
+
+- name: Install AmneziaWG
+  ansible.builtin.apt:
+    name: amneziawg
+    state: present
+    update_cache: yes
+  become: yes

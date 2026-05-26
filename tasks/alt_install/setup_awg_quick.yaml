@@ -1,0 +1,12 @@
+---
+- name: Create systemd unit for awg-quick
+  copy:
+    src: awg-quick.service
+    dest: "/etc/systemd/system/awg-quick@.service"
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Restart systemd
+  systemd:
+    daemon_reload: true
