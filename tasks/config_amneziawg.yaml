@@ -14,7 +14,7 @@
   block:
     - name: Copy config
       copy:
-        src: "{{ awg_client_path }}"
+        src: "{{ awg_client_config_path }}"
         dest: "/etc/amnezia/amneziawg/awg-client.conf"
         owner: root
         group: root

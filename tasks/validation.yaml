@@ -1,0 +1,10 @@
+---
+# Validate prerequisites before execution
+# Проверка предварительных условий перед сборкой
+- name: Assert configuration is defined
+  assert:
+    that:
+      - awg_client_config_path is defined
+    fail_msg: "awg_client_config_path must be defined"
+  delegate_to: localhost
+  run_once: true

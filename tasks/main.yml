@@ -1,4 +1,7 @@
 ---
+- name: Validate prerequisites
+  include_tasks: validation.yaml
+  
 - name: Use main workdflow
   when: use_alt_flow == false
   block:

@@ -13,7 +13,7 @@ Ubuntu 24.02+
 Role Variables
 --------------
 
-- awg_client_path - path to awg client config file
+- awg_client_config_path - path to awg client config file
 - go_package - package of GO.
 - use_alt_flow - use alternative flow for instalation
 
