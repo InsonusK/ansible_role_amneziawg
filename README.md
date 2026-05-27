@@ -22,6 +22,16 @@ Dependencies
 
 None
 
+Error
+-----
+
+May return error that repository has different pgp key. Fixed by
+```shell
+grep -R amnezia /etc/apt/
+sudo rm /etc/apt/sources.list.d/ppa_amnezia_ppa_noble.list
+sudo rm /etc/apt/sources.list.d/amnezia-ubuntu-ppa-noble.sources
+```
+
 Example Playbook
 ----------------
 

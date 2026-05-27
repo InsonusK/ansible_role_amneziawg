@@ -1,10 +1,4 @@
 ---
-- name: Update all packages on the system
-  become: true
-  apt:
-    upgrade: yes
-    update_cache: yes
-
 - name: Install prerequisites for AmneziaWG
   ansible.builtin.apt:
     name:
@@ -16,12 +10,16 @@
     update_cache: yes
   become: yes
 
-- name: Add AmneziaWG PPA repository
+- name: Add Amnezia PPA
   ansible.builtin.apt_repository:
     repo: ppa:amnezia/ppa
     state: present
-    update_cache: yes
+    update_cache: no
   become: yes
+
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: yes
 
 - name: Install AmneziaWG
   ansible.builtin.apt:
