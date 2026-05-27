@@ -11,7 +11,7 @@
       - software-properties-common
       - python3-launchpadlib
       - gnupg2
-      - "linux-headers-{{ ansible_kernel }}"
+      - "linux-headers-{{ ansible_facts.kernel }}"
     state: present
     update_cache: yes
   become: yes
